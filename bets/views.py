@@ -3,6 +3,7 @@ from django.http import HttpResponse, Http404, JsonResponse
 from django.template import loader
 from .models import Bet, Match
 from django.contrib import messages
+
 from django.utils import timezone
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
@@ -120,15 +121,18 @@ def finalize(request):
         bet_over_kills = request.POST.get("kills_yes_no") if request.POST.get("kills_yes_no") else 0
         
         
-       
+        if request.user.profile.coins < int(bet_wager):
+            messages.warning(request, f'You do not have enough coins to place this bet!')
+            return redirect('/bets')
+        else:    
         
-        new_bet = Bet(usr = usr, match_id=match_id, bet_type=bet_type, bet_wager=bet_wager, bet_payout=bet_payout, bet_kills=bet_kills, 
-            bet_finish=bet_finish, bet_over_position=bet_over_position, 
-            bet_over_kills=bet_over_kills, pub_date=timezone.now())
-        new_bet.save()
+            new_bet = Bet(usr = usr, match_id=match_id, bet_type=bet_type, bet_wager=bet_wager, bet_payout=bet_payout, bet_kills=bet_kills, 
+                bet_finish=bet_finish, bet_over_position=bet_over_position, 
+                bet_over_kills=bet_over_kills, pub_date=timezone.now())
+            new_bet.save()
 
-        messages.success(request, f'Bet has been placed!')
-        return redirect('/bets')
+            messages.success(request, f'Bet has been placed!')
+            return redirect('/bets')
 
 
         
@@ -142,7 +146,15 @@ def execute(request):
     context = {'obj': obj, 'bet_id' : bet_id}
 
     if obj.is_taken:
-        messages.danger(request, f'Bet has already been taken!')
+        messages.warning(request, f'Bet has already been taken!')
+        return redirect('/bets')
+
+    elif request.user.profile.coins < obj.bet_payout:
+        messages.warning(request, f'You do not have enough coins to take this bet!')
+        return redirect('/bets')
+
+    elif request.user.username == obj.usr:
+        messages.warning(request, f"You cannot take your own bet!")
         return redirect('/bets')
     else:
         return render(request, 'bets/execute_stage1.html', context)

@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+
+<!DOCTYPE html>
+<html>
+<!-- CSS only -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<head>
+    <style type="text/css">
+
+        .btn-light, .btn-light:hover, .btn-light:active, .btn-light:visited {
+            background-color: #9D4EDD;
+            color: white;
+            border-color: #9D4EDD;
+        }
+        
+        .jumbotron {
+            background-color: #10002B;
+            color: #f0e6ef;
+        }
+
+        .main{
+            
+           /* margin-right: 100%;*/
+            padding: 0px 10px;
+            background-color: #10002B;
+            color: grey;
+
+        }
+
+        body {
+            background-color: #f0e6ef;
+        }
+
+        .row {
+         /*   background-color: white;*/
+            margin-right: 20%;
+            margin-left: 20%;
+            align-content: center;
+
+        }
+        
+
+        .container {
+            margin-top: 10%;
+        }
+
+       .logins {
+       	padding-top: 10px;
+       }
+    </style>
+<head>
+	<title>Quikscope</title>
+</head>
+<body>
+<div class="jumbotron">
+    <!-- <img src="{% static 'bets/images/icon.png' %}" width="30" height="30" class="d-inline-block align-top-right" alt=""> -->
+  	<h1 class="display-4">Quikscope.</h1>
+  	<p class="lead">The future of PVP betting in eSports. Bet any stream, any event, any match. </p>
+  	<hr class="my-4">
+  	<p><b>No house juice. You make the lines.</b></p>
+ 	
+	
+  	<div class="logins">
+		
+		 <a class="btn btn-light btn-md" href="login/" role="button">Login</a>
+		  
+		  	
+		<a class="btn btn-light btn-md" href="accounts/" role="button">Register</a>
+	</div>
+	<!-- <div class="logins">
+		<h3>Streamer?</h3>
+		 <a class="btn btn-light btn-md" href="streamer_login/" role="button">Login</a>
+		  
+		  	
+		<a class="btn btn-light btn-md" href="streamer_accounts/" role="button">Register</a>
+	</div> -->
+
+</div>
+</body>
+</html>

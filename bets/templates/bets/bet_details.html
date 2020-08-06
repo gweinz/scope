@@ -1,0 +1,188 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+
+   
+{% include 'bets/create_body.html' %}
+
+    <div class="main">
+       
+        <div class="container">
+ 
+                <form action="{% url 'finalize' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" id="bet_type" name="bet_type" value="{{bet_type}}">
+                <input type="hidden" id="match_id" name="match_id" value="{{match_id}}">
+
+                {% if bet_type != "5" and bet_type != "6" %}
+
+
+                    <div class="row justify-content-center mt-3 p-2">
+                        <div class="col-3">
+                            How much do you want to bet?
+                        </div>
+                        
+                        <div class="col-md-auto">
+      
+                            <input type="number" name="wager">
+                    
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center mt-3 p-2">
+                        <div class="col-3">
+                            How much do you want to win? 
+                        </div>
+                        
+                        <div class="col-md-auto">
+                            <input type="number" name="win">
+
+                        </div>
+                    </div>
+
+                {% elif bet_type == "6" %}
+
+                    <div class="row justify-content-center mt-3 p-2">
+                        <div class="col-3">
+                            How many kills?
+                        </div>
+                        
+                        <div class="col-md-auto">
+      
+                            <input type="number" name="kills">
+                    
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center mt-3 p-2">
+                        <div class="col-3">
+                            Do you want the Over or Under? 
+                        </div>
+                        
+                        <div class="col-md-auto">
+                            <div class="radio">
+                                <input type="radio" name="kills_yes_no" value="1" checked>Over</input>
+                                
+                                <input type="radio" name="kills_yes_no" value="0">Under</input>   
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="row justify-content-center mt-3 p-2">
+                        <div class="col-3">
+                            How much do you want to bet?
+                        </div>
+                        
+                        <div class="col-md-auto">
+      
+                            <input type="number" name="wager">
+                    
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center mt-3 p-2">
+                        <div class="col-3">
+                            How much do you want to win? 
+                        </div>
+                        
+                        <div class="col-md-auto">
+                            <input type="number" name="win">
+
+                        </div>
+                    </div>
+
+                {% else %}
+
+                    <div class="row justify-content-center mt-3 p-2">
+                        <div class="col-3">
+                            What position?
+                        </div>
+                        
+                        <div class="col-md-auto">
+      
+                            <input type="number" name="position">
+                    
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center mt-3 p-2">
+                        <div class="col-3">
+                            Do you want the Over or Under? 
+                        </div>
+                        
+                        <div class="col-md-auto">
+                            <div class="radio">
+                                <input type="radio" name="ou_yes_no" value="1" checked>Over</input>
+                                    
+                                <input type="radio" name="ou_yes_no" value="0">Under</input>   
+                            </div>
+
+                        </div>
+                    </div>
+
+                
+                    <div class="row justify-content-center mt-3 p-2">
+                        <div class="col-3">
+                            How much do you want to bet?
+                        </div>
+                        
+                        <div class="col-md">
+      
+                            <input type="number" name="wager">
+                    
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center mt-3 p-2">
+                        <div class="col-3">
+                            How much do you want to win? 
+                        </div>
+                        
+                        <div class="col-9">
+                            <input type="number" name="win">
+
+                        </div>
+                    </div>
+
+
+
+
+                
+
+               
+                {% endif %}
+                 <div id="submit_row" class="row justify-content-center mt-3">
+                    <button type="submit" class="btn-light"> Confirm </button>
+                </div>
+                </form> 
+
+
+           </div>
+        </div>
+    </div>
+        
+
+</body>
+
+<script>
+    const minusButton = document.getElementById('minus');
+const plusButton = document.getElementById('plus');
+const inputField = document.getElementById('input');
+
+minusButton.addEventListener('click', event => {
+  event.preventDefault();
+  const currentValue = Number(inputField.value) || 0;
+  inputField.value = currentValue - 1;
+});
+
+plusButton.addEventListener('click', event => {
+  event.preventDefault();
+  const currentValue = Number(inputField.value) || 0;
+  inputField.value = currentValue + 1;
+});
+</script>
+</html>

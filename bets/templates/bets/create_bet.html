@@ -1,0 +1,97 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+   
+
+  {% include 'bets/create_body.html' %}
+
+    <div class="main">
+        <div class="container">
+        {% if user.is_authenticated %}
+            <div id="title" class="row justify-content-center mt-3">
+                <div class="col-md-auto">
+                  <h3> <strong> What type of bet?</strong>  </h3>
+                </div>
+            </div>
+            <form action="{% url 'details' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" id="match_id" name="match_id" value="{{match_id}}">
+            <div class="row justify-content-center mt-3 p-2" >
+                <div class="col-4">
+                    <div class="radio">
+                      <label><input type="radio" name="types" value="1" checked> 
+                       <img src="{% static 'bets/images/first.png' %}" width="40" height="40" class="d-inline-block align-top" alt="">
+                        Streamer Victory
+                      </label>
+                    </div>
+                </div>
+           
+                <div class="col-4">
+                    <div class="radio">
+                      <label><input type="radio" name="types" value="2"> 
+                       <img src="{% static 'bets/images/third.png' %}" width="40" height="40" class="d-inline-block align-top" alt="">
+                      Top 3 Finish
+                      </label>
+                    </div>
+                </div>
+            
+                <div class="col-4">
+                    <div class="radio">
+                      <label><input type="radio" name="types" value="3"> 
+                        <img src="{% static 'bets/images/fifth.png' %}" width="40" height="40" class="d-inline-block align-top" alt="">
+                      Top 5 Finish
+                    </label>
+                    </div>
+                </div>
+            </div>
+             <div class="row justify-content-center mt-3 p-2">
+                <div class="col-4">
+                    <div class="radio">
+                      <label><input type="radio" name="types" value="4" > 
+                        <img src="{% static 'bets/images/ten.png' %}" width="40" height="40" class="d-inline-block align-top" alt="">
+                      Top 10 Finish
+                    </label>
+                    </div>
+                </div>
+          
+            
+                <div class="col-4">
+                    <div class="radio">
+                      <label><input type="radio" name="types" value="5"> 
+                         <img src="{% static 'bets/images/position.png' %}" width="40" height="40" class="d-inline-block align-top" alt="">
+                      Over/Under Finish
+                    </label>
+                    </div>
+                </div>
+           
+       
+                <div class="col-4">
+                    <div class="radio">
+                      <label><input type="radio" name="types" value="6"> 
+                       <img src="{% static 'bets/images/kills.png' %}" width="40" height="40" class="d-inline-block align-top" alt="">
+                        Over/Under Kills
+                    </label>
+                    </div>
+                </div>
+            </div>
+          
+
+              
+                
+        
+            <div id="submit_row" class="row justify-content-center mt-3">
+                <button type="submit" class="btn-light"> <i class="fa fa-fw fa-arrow-right"></i></button>
+            </div>
+         </form> 
+
+        {% else %}
+            <p><a href="/login"> Login</a> here</p>
+        {% endif %}
+        </div>
+    </div>
+        
+
+</body>
+</html>

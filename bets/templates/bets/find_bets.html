@@ -1,0 +1,123 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+{% include 'bets/home_body.html' %}
+<div class="container">
+            {% if user.is_authenticated %}
+ 
+                <form action="{% url 'find' %}" method="POST">
+               
+                <div id="filter_row" class="row justify-content-center mt-2 p-2">
+              
+                   {% csrf_token %}
+                    <div class="col">
+
+                        <input id="match_name" name="match_name" class="form-control mr-sm-2" 
+                        type="search" placeholder="Search..." aria-label="Filter">
+                    </div>
+                    <div class="col-md-auto">
+                        <button id="filter_button" class="btn btn-light my-2 my-sm-0" 
+                        type="submit"><i class="fa fa-fw fa-search"></i></button>
+                    </div>
+                
+                </div>
+                </form>
+                
+
+                {% if match_dict %}
+                     
+                    <div class="accordion" id="accordionExample">
+                    {% for match, bets in match_dict.items %}
+                       {% if match.is_active %}
+                        <div class="card">
+                            <div class="card-header" id="heading_{{match.name}}">
+                              <h2 class="mb-0">
+                               <button class="btn btn-light" data-toggle="collapse" data-target="#collapse_{{match.id}}" aria-expanded="true" aria-controls="collapse_{{match.id}}">
+                            {{match}}
+                             </button>
+                              </h2>
+                            </div>
+
+                            <div id="collapse_{{match.id}}" class="collapse" aria-labelledby="heading_{{match.id}}" data-parent="#accordionExample">
+                              <div class="card-body">
+                                {% if bets %}
+                                  {% for b in bets %}
+                                    {% if b.is_active %}
+                                       <div id="betrows" class="row justify-content-sm-center mt-2 p-2">
+                          
+                                       
+                                      <form action="{% url 'execute' %}" method="POST">
+                                      {% csrf_token %}
+                                      <input type="hidden" id="bet_id" name="bet_id" value="{{b.id}}">
+                                          <div class="col">
+                                              <b> <i class="fa fa-fw fa-trophy"></i> {{b.take}}  </b>
+                                              <button type="submit" class="btn-light"> <i class="fa fa-fw fa-arrow-right"></i></button>
+                                          </div>
+                                         
+                                      </form>
+                                      </div>
+                                    {% endif %}
+
+                                  {% endfor %}
+                                {% else %}
+                                <div class="alert alert-danger" role="alert">
+                                    Sorry no bets here. But you can <a href="{% url 'select_match' %}" class="alert-link">place one</a> if you want!
+                                </div>
+                                {% endif %}
+                              </div>
+                            </div>
+
+                            
+                        </div>
+
+                       {% endif %}
+                    
+
+                    {% endfor %}
+                    </div>
+
+
+                {% else %}
+                    <div id="place" class="row justify-content-sm-center mt-2 p-2">
+                        
+                                
+                       
+                        <div class="alert alert-danger" role="alert">
+                          Sorry not matches here. <a href="" class="alert-link">Go back</a>. Give it a click if you like.
+                        </div>
+
+                    
+              
+                  
+                        </div>
+                {% endif %}
+
+
+            {% else %}
+                <p><a href="/login"> Login</a> here</p>
+            {% endif %}
+            </div>
+</div>
+    
+ <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    
+    $( "#match_name" ).autocomplete({
+      source: "{% url 'find' %}"
+
+    });
+
+   
+  } );
+  </script>
+
+</body>
+
+</html>

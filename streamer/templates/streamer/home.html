@@ -1,0 +1,97 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+
+
+{% include 'streamer/streamer_body.html' %}
+<div class="main">
+    <div class="container">
+            {% if user.is_authenticated and user.profile.is_streamer %}
+                
+                               
+                {% if matches %}
+                    <div id="title" class="row justify-content-center mt-3">
+                        <div class="col-md-auto">
+                            <h3> <strong> Your active streams. </strong>  </h3>
+                        </div>
+                    </div>
+                    {% for match in matches %}
+                       
+                        {% if match.is_entered == False %}
+                              
+                        
+                           
+                           
+                            <div id="betrows" class="row justify-content-sm-center mt-3 p-2">
+                                <div class="col-9">
+                                    {% if match.is_finished %}
+                                       <i class="fa fa-lock" aria-hidden="true"></i> <strong> {{match}}</strong> 
+                                    {% elif match.in_progress %}
+                                        <i class="fa fa-hourglass-end" aria-hidden="true"></i><strong> {{match}}</strong>
+                                    {% else %} 
+                                        <i class="fa fa-hourglass" aria-hidden="true"></i><strong> {{match}}</strong>
+                                    {% endif %}
+
+                                </div>
+                                <div class="col-3">
+                                    {% if match.is_finished %}
+                                    <form action="{% url 'enter_stats' %}" method="POST">
+                                        {% csrf_token %}
+                                       <input type="hidden" id="match_id" name="match_id" value="{{match.id}}">
+                                        <button type="submit" class="btn btn-light"> Enter Stats </button>
+                                    </form>   
+                                    {% elif match.in_progress %}
+                                    <form action="{% url 'end_stream' %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" id="match_id" name="match_id" value="{{match.id}}">
+                                        <button type="submit" class="btn btn-danger"> End Stream </button>
+                                    </form>
+                                    {% else %}
+                                    <form action="{% url 'begin_stream' %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" id="match_id" name="match_id" value="{{match.id}}">
+                                        <button type="submit" class="btn btn-success"> Begin Stream </button>
+                                    </form>
+
+                                    {% endif %}
+                                </div>
+                                                    
+                            </div>
+                        {% endif%}
+                            
+                                
+                    
+                    
+
+                    {% endfor %}
+
+                        
+                {% else %}
+                <div class="row justify-content-sm-center p-2">
+                    <p>No matches listed yet.</p>
+                </div>
+               
+                    
+
+                    <label> Create new match <button type="submit" href="{% url 'add_match' %}" class="btn-light"> <i class="fa fa-fw fa-arrow-right"></i></button></label> 
+                
+                   
+                {% endif %}
+               
+                   
+                
+                    
+                    
+           
+                
+            {% else %} 
+                <p><a href="/login"> Login</a> here</p>
+            {% endif %}
+            </div>
+    </div>
+</div>       
+
+</body>
+</html>

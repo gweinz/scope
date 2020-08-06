@@ -1,0 +1,46 @@
+<div class="card">
+    <div class="card-header" id="heading_{{match.id}}">
+        <h5 class="mb-0">
+            <button class="btn btn-light" data-toggle="collapse" data-target="#collapse_{{match.id}}" aria-expanded="true" aria-controls="collapse_{{match.id}}">
+            {{match.name}}
+            </button>
+        </h5>
+    </div>
+
+    <div id="collapse_{{match.id}}" class="collapse" aria-labelledby="heading_{{match.id}}" data-parent="#accordion">
+                            
+                                
+                            
+    <div class="card-body">
+        {% for bet in bets %}
+             <form action="{% url 'execute' %}" method="POST">
+            {% csrf_token %}
+            <div id="betrows" class="row justify-content-sm-center p-2">
+
+                <input type="hidden" id="bet_id" name="bet_id" value="{{bet.id}}">
+                {% if bet.bet_type == 6 %}
+                <div class="col">
+                <b> <i class="fa fa-fw fa-bomb"></i> {{bet}}  </b> 
+
+                </div>
+                <div class="col-md-auto">
+                 <button type="submit" class="btn-light"> <i class="fa fa-fw fa-arrow-right"></i></button>
+            </div>
+            {% else %}
+                <div class="col">
+                <b> <i class="fa fa-fw fa-trophy"></i> {{bet}}  </b> 
+
+                </div>
+                <div class="col-md-auto">
+                <button type="submit" class="btn-light"> <i class="fa fa-fw fa-arrow-right"></i></button>
+                </div>
+            {% endif %}
+                                                
+            </div>
+            </form>
+        {% endfor %}
+    </div>
+</div>
+
+                          </div>
+                        </div>

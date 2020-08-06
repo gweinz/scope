@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+
+   {% include 'bets/create_body.html' %}
+
+    <div class="main">
+        <div class="container">
+        {% if user.is_authenticated %}
+           
+
+            {% if match_list %}
+              <div id="title" class="row justify-content-center mt-3">
+                <div class="col-md-auto">
+                  <h3> <strong> Which stream?</strong>  </h3>
+                </div>
+              </div>
+              
+              {% for match in match_list %}
+                {% if match.is_active %}
+                  <form action="{% url 'create' %}" method="POST">
+                  <input type="hidden" id="match_id" name="match_id" value="{{match.id}}">
+                  {% csrf_token %}
+                  <div id="betrows" class="row justify-content-sm-center mt-3 p-2">
+                    <div class="col-11">
+                     <b> {{match.name}}</b> 
+                    </div>
+                     <div class="col-sm-auto">
+                      <button type="submit" class="btn-light"> <i class="fa fa-fw fa-arrow-right"></i></button>
+                      </div>
+                  </div>
+
+                  </form>
+                {% endif %}
+                
+              {% endfor %}
+
+            {% else %}
+                  <p>No matches are available.</p>
+            {% endif %}
+            
+          
+
+              
+        </div>
+            
+
+        {% else %}
+            <p><a href="/login"> Login</a> here</p>
+        {% endif %}
+        </div>
+    </div>
+        
+
+</body>
+</html>

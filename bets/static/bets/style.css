@@ -1,0 +1,61 @@
+ .btn-light, .btn-light:hover, .btn-light:active, .btn-light:visited {
+            background-color: #9D4EDD;
+            color: white;
+            border-color: #9D4EDD;
+        }
+        
+
+        
+
+        .main{
+            top: 50%;
+            left: 50%;
+           /* margin-right: 100%;*/
+            padding: 0px 10px;
+            background-color: #10002B;
+            color: grey;
+
+        }
+
+        body {
+            background-color: #10002B;
+        }
+
+        .row {
+            border-radius: 25px;
+            background-color: white;
+            margin-right: 20%;
+            margin-left: 20%;
+            align-content: center;
+
+        }
+
+        .card-body {
+            background-color: #f0e6ef;
+        }
+        .card-header {
+
+            background-color: #f0e6ef;
+        }
+        
+        #filter_row {
+            background-color: #10002B;
+
+            border-radius: 25px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            margin-right: 20%;
+            margin-left: 20% 
+        }
+
+        #betrows {
+            margin-right: 5%;
+            margin-left:5%;
+        }
+        #accordion {
+
+            padding-bottom: 15px;
+        }
+    

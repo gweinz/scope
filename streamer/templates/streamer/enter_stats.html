@@ -1,0 +1,57 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+
+ {% include 'streamer/streamer_body.html' %}
+       
+       
+
+   
+
+
+<div class="main">
+    <div class="container">
+            {% if user.is_authenticated and user.profile.is_streamer %}
+            <!-- {{match}} -->
+              {% if match.is_entered == False %}
+                  <form action="{% url 'confirm_stats' %}"" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" id="match_id" name="match_id" value="{{match.id}}">
+                    <div id="betrows" class="row justify-content-center mt-3">
+                        <div class="col-4">
+                            <strong>  Kills: </strong>  <input type="number" name="kills">
+                        </div>
+                                
+                        <div class="col-4">
+              
+                            <strong>  Finish: </strong>  <input type="number" name="position">
+                            
+                        </div>
+
+                        <div class="col-4">
+                                  
+                            <button type="submit" class="btn-danger"> Enter Stats </button>
+                     
+                         </div>
+
+                    </div> 
+                  </form> 
+              {% else %}
+                <div class="row justify-content-center mt-3">
+                  <div class="col-md-auto"> <strong>This game has ended and stats have been logged. </strong></div>
+                </div>
+
+              {% endif %}
+                  
+                
+            {% else %} 
+                <p><a href="/login"> Login</a> here</p>
+            {% endif %}
+            </div>
+    </div>
+</div>       
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+
+
+{% include 'bets/home_body.html' %}
+  
+
+
+    <div class="main">
+       
+        <div class="container">
+ 
+               
+         
+            <form action="{% url 'send_execute' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" id="bet_id" name="bet_id" value="{{bet_id}}">
+                <div id="confirmrow" class="row justify-content-center mt-3">
+                    <div class="col-md-auto">
+                        
+                        
+                        Are you sure want to wager this bet? 
+                        <b> {{ obj }} </b>                        
+                
+                    </div>
+
+                </div>
+
+                <div id="confirmrow" class="row justify-content-center mt-3">
+
+                    <div class="col-md-auto"> 
+                    You will risk {{obj.bet_payout}} coins to win {{obj.bet_wager}} coins
+                    </div>
+
+                </div>
+
+
+                <div id="confirmrow" class="row justify-content-center mt-3">
+                    <div class="col-md-auto">
+                    <button type="submit" class="btn-light"> Confirm </button>
+                    </div>
+                </div>
+            </form>
+        
+           </div>
+        </div>
+    </div>
+        
+
+</body>
+
+</html>

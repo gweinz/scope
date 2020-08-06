@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'streamer.apps.StreamerConfig',
     'twitchbet',
-    'crispy_forms',
 ]
 
 MIDDLEWARE = [

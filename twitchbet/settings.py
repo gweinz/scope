@@ -29,7 +29,7 @@ SECRET_KEY = '_y&s*-t%3-u_@35eljct+8h(+mi^ixc5(2csefp2c5c*&el^oc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.quikscope.io']
 
 
 # Application definition
@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'streamer.apps.StreamerConfig',
     'twitchbet',
     'crispy_forms',
-    
+
 ]
 
 MIDDLEWARE = [

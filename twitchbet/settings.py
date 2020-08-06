@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'bets.apps.BetsConfig',
     'main.apps.MainConfig',
     'streamer.apps.StreamerConfig',
+    'twitchbet',
     'crispy_forms',
 ]
 

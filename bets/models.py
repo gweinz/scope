@@ -88,6 +88,7 @@ class Bet(models.Model):
 
 class Match(models.Model):
     streamer_id = models.IntegerField(default=0, null=0, blank=0)
+    streamer_name = models.CharField(max_length=200, default='none')
     name = models.CharField(max_length=200, default='none')
     kills = models.IntegerField(default=0, null=0, blank=0)
     position = models.IntegerField(default=0, null=0, blank=0)

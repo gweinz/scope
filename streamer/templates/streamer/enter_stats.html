@@ -9,8 +9,6 @@
        
 
    
-
-
 <div class="main">
     <div class="container">
             {% if user.is_authenticated and user.profile.is_streamer %}
@@ -19,18 +17,18 @@
                   <form action="{% url 'confirm_stats' %}"" method="POST">
                     {% csrf_token %}
                     <input type="hidden" id="match_id" name="match_id" value="{{match.id}}">
-                    <div id="betrows" class="row justify-content-center mt-3">
-                        <div class="col-4">
+                    <div id="stats" class="row justify-content-center mt-3 p-2">
+                        <div class="col-auto">
                             <strong>  Kills: </strong>  <input type="number" name="kills">
                         </div>
                                 
-                        <div class="col-4">
+                        <div class="col-auto">
               
                             <strong>  Finish: </strong>  <input type="number" name="position">
                             
                         </div>
 
-                        <div class="col-4">
+                        <div class="col-auto">
                                   
                             <button type="submit" class="btn-danger"> Enter Stats </button>
                      

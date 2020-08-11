@@ -9,7 +9,7 @@ from django.contrib import messages
 
 @login_required
 def streamer_home(request):
-    matches = Match.objects.filter(streamer_id=request.user.id)
+    matches = Match.objects.filter(streamer_id=request.user.id).filter(is_active=True)
     context = {
         'matches' : matches,
     }
@@ -21,9 +21,10 @@ def add_match(request):
 
     if request.method == "POST":
         streamer_id = request.user.id
+        streamer_name = request.user.username
         name = request.POST.get("match_name")
         pub_date = timezone.now()
-        new_match = Match(streamer_id=streamer_id, name=name, pub_date=pub_date)
+        new_match = Match(streamer_id=streamer_id, streamer_name=streamer_name, name=name, pub_date=pub_date)
         new_match.save()
         return redirect('home')
 
@@ -38,7 +39,7 @@ def begin_stream(request):
     bets = Bet.objects.filter(match_id=match_id)
     match = Match.objects.get(pk=match_id)
     match.in_progress = True
-    match.is_active = False
+    
     match.save()
     
     for bet in bets:
@@ -65,7 +66,6 @@ def enter_stats(request):
 def end_stream(request):
     match_id = request.POST.get("match_id")
     match = Match.objects.get(pk=match_id)
-    match.is_active=False
     match.in_progress=False
     match.is_finished=True
     match.save()
@@ -151,17 +151,17 @@ def confirm_stats(request):
             usr2.profile.save()
 
         else:
+            usr1.profile.coins += b.bet_wager
+            usr1.profile.save()
             continue
 
     match.update(is_entered=True)
     match.update(kills=kills)
     match.update(position=pos)
-    
+    match.update(is_active=False)
    
     messages.success(request, f'Stats have been entered!')
    
-    context = {
-        'match' : match,
-    }
+
     return redirect('home')
 

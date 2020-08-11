@@ -38,7 +38,7 @@
                             <div class="card-header" id="heading_{{match.name}}">
                               <h2 class="mb-0">
                                <button class="btn btn-light" data-toggle="collapse" data-target="#collapse_{{match.id}}" aria-expanded="true" aria-controls="collapse_{{match.id}}">
-                            {{match}}
+                           <strong>{{match.streamer_name}}: </strong> {{match}}
                              </button>
                               </h2>
                             </div>
@@ -66,6 +66,7 @@
                                   {% endfor %}
                                 {% else %}
                                 <div class="alert alert-danger" role="alert">
+
                                     Sorry no bets here. But you can <a href="{% url 'select_match' %}" class="alert-link">place one</a> if you want!
                                 </div>
                                 {% endif %}

@@ -18,12 +18,11 @@
             background-color: #9D4EDD;
             color: white;
             border-color: #9D4EDD;
+
             
         }
 
-        .btn, .btn:hover, .btn:active, .btn:visited {
-            border-radius: 10px;
-        }
+        
         
 
         .main{
@@ -38,16 +37,18 @@
 
         body {
             background-color: #10002B;
+
         }
 
         .row {
-            border-radius: 25px;
+          
             background-color: white;
             margin-right: 10%;
             margin-left: 10%;
             align-content: center;
             color: #10002B;
             font-size: 16px;
+            border-radius: 0px;
 
         }
 
@@ -71,7 +72,16 @@
         }
 
 
+        #alerts {
+          background-color: #10002B;
+        }
 
+        #add {
+           margin-right: 20%;
+            margin-left:20%;
+            color: #f0e6ef;
+            background-color: #10002B;
+        }
 
     </style>
     <title>Streamer Home! | Quikscope</title>
@@ -96,7 +106,7 @@
         <a class="nav-link" href="{% url 'find' %}"><i class="fa fa-fw fa-search-plus"></i>Find</a>
       </li> -->
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'find' %}"> <i class="fa fa-fw fa-pencil"></i>Bettor</a>
+        <a class="nav-link" href="{% url 'find' %}"> <i class="fa fa-fw fa-dollar-sign"></i>Bettor</a>
       </li>
 
       <li class="nav-item active">

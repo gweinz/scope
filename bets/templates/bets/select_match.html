@@ -4,7 +4,7 @@
 <html>
 
 
-   {% include 'bets/create_body.html' %}
+   {% include 'bets/select_body.html' %}
 
     <div class="main">
         <div class="container">
@@ -23,11 +23,11 @@
                   <form action="{% url 'create' %}" method="POST">
                   <input type="hidden" id="match_id" name="match_id" value="{{match.id}}">
                   {% csrf_token %}
-                  <div id="betrows" class="row justify-content-sm-center mt-3 p-2">
-                    <div class="col-11">
+                  <div class="row justify-content-sm-center mt-3 p-2">
+                    <div class="col-auto">
                      <b> {{match.name}}</b> 
                     </div>
-                     <div class="col-sm-auto">
+                     <div class="col-auto">
                       <button type="submit" class="btn-light"> <i class="fa fa-fw fa-arrow-right"></i></button>
                       </div>
                   </div>

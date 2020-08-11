@@ -33,7 +33,7 @@ def activate(request):
    
         return redirect('/streamer')
     else:
-        messages.warning(request, f'Referral code note accepted!')
+        messages.warning(request, f'Referral code not accepted!')
         return redirect('/bets')
 
 

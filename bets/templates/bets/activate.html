@@ -16,7 +16,7 @@
                     <form action="{% url 'activate_streamer' %}" method="POST">
                         {% csrf_token %}
                         <div class="col-auto"> 
-                            Enter Referral Code: 
+                            <strong> Enter Referral Code: </strong>
                         </div>
                         <div class="col-auto">
                             <input type="text" name="referral">

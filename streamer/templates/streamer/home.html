@@ -15,10 +15,11 @@
                     <div id="title" class="row justify-content-center mt-3">
                         <div class="col-md-auto">
                             <h3> <strong> Your active streams. </strong>  </h3>
+
                         </div>
                     </div>
                     {% for match in matches %}
-                       
+                        
                         {% if match.is_entered == False %}
                               
                         
@@ -69,20 +70,8 @@
 
                         
                 {% else %}
-               <!--  <div id="title" class="row justify-content-sm-center mt-3 p-2">
-
-                    <div class="col-auto">
-                        No streams listed yet
-                    </div>
-                    
-                </div>
-
-                <div id="title" class="row justify-content-sm-center mt-3 p-2">
-                    
-                    <div class="col-auto">
-                        <label> Create new stream<button type="submit" href="{% url 'add_match' %}" class="btn-light"> <i class="fa fa-fw fa-arrow-right"></i></button></label> 
-                    </div>
-                </div> -->
+         
+                </div> 
                 <div id="alerts" class="row justify-content-sm-center mt-3 p-2">
                     <div class="alert alert-danger" role="alert">
                         Sorry no active streams listed. But you can <a href="{% url 'add_match' %}" class="alert-link">list one</a> here if you want!

@@ -60,12 +60,14 @@ def find(request):
         match_list = Match.objects.filter(is_active=True).order_by('-pub_date')
     
     match_dict = {}
+    streamer_dict = {}
     for m in match_list:
         
         match_bets = Bet.objects.filter(match_id=m.id).filter(is_taken=False).filter(is_active=True).filter(is_started=False)
-
+     
         if match_bets:
             match_dict[m] = match_bets
+            
         else:
             match_dict[m] = None
 
@@ -143,6 +145,8 @@ def execute(request):
 
     obj = Bet.objects.get(pk=bet_id)
 
+    stream = Match.objects.get(pk=obj.match_id)
+
     context = {'obj': obj, 'bet_id' : bet_id}
 
     if obj.is_taken:
@@ -155,6 +159,10 @@ def execute(request):
 
     elif request.user.username == obj.usr:
         messages.warning(request, f"You cannot take your own bet!")
+        return redirect('/bets')
+
+    elif request.user.username == stream.streamer_name:
+        messages.warning(request, f"You cannot bet on your own stream!")
         return redirect('/bets')
     else:
         return render(request, 'bets/execute_stage1.html', context)

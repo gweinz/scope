@@ -26,14 +26,14 @@ def streamer(request):
 @login_required
 def activate(request):
     referral = request.POST.get("referral")
-    if referral == 'youcanbet':
+    if referral == 'stream':
         prof = request.user.profile
         prof.is_streamer = True
         prof.save()
    
-        return redirect('/bets')
+        return redirect('/streamer')
     else:
-     
+        messages.warning(request, f'Referral code note accepted!')
         return redirect('/bets')
 
 

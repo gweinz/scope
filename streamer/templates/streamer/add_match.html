@@ -10,15 +10,15 @@
         <div class="container">
         {% if user.is_authenticated and user.profile.is_streamer %}
           <form action="" method="POST">
-            <div class="row justify-content-center mt-3 p-2">
+            <div id="add" class="row justify-content-center mt-3 p-2">
                 
               
                 
                     {% csrf_token %}
-                    <div class="col-10">
-                      <label> Title for Match: <input type="text" name="match_name"></label>
+                    <div class="col-auto">
+                      <label> <strong> Title for Stream:  </strong> <input type="text" name="match_name"></label>
                     </div>
-                    <div class="col-2">
+                    <div class="col-auto">
                       <button type="submit" class="btn btn-light"> Confirm </button>
                     </div>
               

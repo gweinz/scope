@@ -92,60 +92,62 @@ def confirm_stats(request):
 
         if b.is_taken:
             if b.bet_type == 1: #streamer vic
+
+                total = b.bet_wager + b.bet_payout
                 if pos == 1: #streamer won
-                    usr1.profile.coins += b.bet_payout
+                    usr1.profile.coins += total
                     b.user_winner = True
                 else:
-                    usr2.profile.coins += b.bet_wager
+                    usr2.profile.coins += total
 
             elif  b.bet_type == 2:
                 if pos <= 3: #streamer top 3
-                    usr1.profile.coins += b.bet_payout
+                    usr1.profile.coins += total
                     b.user_winner = True
                 else:
-                    usr2.profile.coins += b.bet_wager
+                    usr2.profile.coins += total
 
             elif  b.bet_type == 3:
                 if pos <= 5: #streamer top 5
-                    usr1.profile.coins += b.bet_payout
+                    usr1.profile.coins += total
                     b.user_winner = True
                 else:
-                    usr2.profile.coins += b.bet_wager
+                    usr2.profile.coins += total
 
             elif  b.bet_type == 4:
                 if pos <= 10: #streamer top 10
-                    usr1.profile.coins += b.bet_payout
+                    usr1.profile.coins += total
                     b.user_winner = True
                 else:
-                    usr2.profile.coins += b.bet_wager
+                    usr2.profile.coins += total
 
             elif  b.bet_type == 5:
                 if pos <= b.bet_finish: #under hit
                     if b.bet_over_position:
-                        usr2.profile.coins += b.bet_wager
+                        usr2.profile.coins += total
                     else:
-                        usr1.profile.coins += b.bet_payout
+                        usr1.profile.coins += total
                         b.user_winner = True
                 else:
                     if b.bet_over_position:
-                        usr1.profile.coins += b.bet_payout
+                        usr1.profile.coins += total
                         b.user_winner = True
                     else:
-                        usr2.profile.coins += b.bet_wager
+                        usr2.profile.coins += total
 
             else:
                 if kills <= b.bet_kills: #under hit
                     if b.bet_over_kills:
-                        usr2.profile.coins += b.bet_wager
+                        usr2.profile.coins += total
                     else:
-                        usr1.profile.coins += b.bet_payout
+                        usr1.profile.coins += total
                         b.user_winner = True
                 else:
                     if b.bet_over_kills:
-                        usr1.profile.coins += b.bet_payout
+                        usr1.profile.coins += total
                         b.user_winner = True
                     else:
-                        usr2.profile.coins += b.bet_wager
+                        usr2.profile.coins += total
             b.save()
             usr1.profile.save()
             usr2.profile.save()

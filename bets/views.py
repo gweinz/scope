@@ -81,7 +81,7 @@ def find(request):
 
 @login_required
 def select(request):
-    match_list = Match.objects.order_by('-pub_date')
+    match_list = Match.objects.order_by('-pub_date').filter(is_active=True)
     context = {
         'match_list': match_list,
     }

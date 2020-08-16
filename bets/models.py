@@ -26,30 +26,30 @@ class Bet(models.Model):
 
     def __str__(self):
         if self.bet_type == 1:
-            return 'Streamer Victory  ' + '(' + str(self.bet_payout) + ' to win ' + str(self.bet_wager) + ')'
+            return 'Streamer Victory  ' + '(' + str(self.bet_wager) + ' to win ' + str(self.bet_payout) + ')'
          
         elif self.bet_type == 2:   
-            return 'Top 3 Finish ' + '(' + str(self.bet_payout) + ' to win ' + str(self.bet_wager) + ')'
+            return 'Top 3 Finish ' + '(' + str(self.bet_wager) + ' to win ' + str(self.bet_payout) + ')'
 
         elif self.bet_type == 3:  
-            return 'Top 5 Finish ' + '(' + str(self.bet_payout) + ' to win ' + str(self.bet_wager) + ')'
+            return 'Top 5 Finish ' + '(' + str(self.bet_wager) + ' to win ' + str(self.bet_payout) + ')'
 
         elif self.bet_type == 4:  
-            return 'Top 10 Finish ' + '(' + str(self.bet_payout) + ' to win ' + str(self.bet_wager) + ')'
+            return 'Top 10 Finish ' + '(' + str(self.bet_wager) + ' to win ' + str(self.bet_payout) + ')'
 
         elif self.bet_type == 5: 
             if self.bet_over_position: 
-                to_return = 'Finish Outside Top ' + str(self.bet_finish) + ' (' + str(self.bet_payout) + ' to win ' + str(self.bet_wager) + ')'
+                to_return = 'Finish Outside Top ' + str(self.bet_finish) + ' (' + str(self.bet_wager) + ' to win ' + str(self.bet_payout) + ')'
             else:
-                to_return = 'Finish Inside Top ' + str(self.bet_finish) + ' (' + str(self.bet_payout) + ' to win ' + str(self.bet_wager) + ')'
+                to_return = 'Finish Inside Top ' + str(self.bet_finish) + ' (' + str(self.bet_wager) + ' to win ' + str(self.bet_payout) + ')'
 
             return to_return
 
         else: 
             if self.bet_over_kills:
-                to_return = 'Over '+ str(self.bet_kills) + ' Kills ' + '(' + str(self.bet_payout) + ' to win ' + str(self.bet_wager) + ')'
+                to_return = 'Over '+ str(self.bet_kills) + ' Kills ' + '(' + str(self.bet_wager) + ' to win ' + str(self.bet_payout) + ')'
             else:
-                to_return = 'Under '+ str(self.bet_kills) + ' Kills ' + '(' + str(self.bet_payout) + ' to win ' + str(self.bet_wager) + ')'
+                to_return = 'Under '+ str(self.bet_kills) + ' Kills ' + '(' + str(self.bet_wager) + ' to win ' + str(self.bet_payout) + ')'
 
             return to_return
 

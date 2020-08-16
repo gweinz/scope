@@ -29,6 +29,7 @@
                 </form>
                 
 
+
                 {% if match_dict %}
                      
                     <div class="accordion" id="accordionExample">
@@ -60,6 +61,23 @@
                                           </div>
                                          
                                       </form>
+<!-- 
+                                          <div class="col">
+                      
+                                              <div class="tag"><i class="fa fa-fw fa-trophy"></i></div>
+
+                                              {% if b.bet_type == 5 %}
+
+                                                <div class="info">You .</div>
+                                              
+                                              {% elif b.bet_type == 6 %}
+                                                <div class="info">Taking this bet means you don't think they'll .</div>
+
+                                              {% else %}
+                                                <div class="info">Taking this bet means you don't think they'll finish within this  position </div>
+                                              {% endif %}
+
+                                          </div> -->
                                       </div>
                                     {% endif %}
 
@@ -93,7 +111,6 @@
                         </div>
 
                     
-              
                   
                         </div>
                 {% endif %}

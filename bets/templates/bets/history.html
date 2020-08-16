@@ -34,21 +34,24 @@
                               <div class="card-body">
                                 {% for l in live %}
                                     
-                                     <div id="betrows" class="row justify-content-sm-center mt-3 p-2">
+                                     <!-- <div id="betrows" class="row justify-content-sm-center mt-3 p-2"> -->
+
                                     
-                                        <div class="col">
-                                            <b> <i class="fa fa-fw fa-trophy"></i> 
+                                        <!-- <div class="col"> -->
+                                            <!-- <b> <i class="fa fa-fw fa-trophy"></i>  -->
+                                          <div class="alert alert-warning" role="alert">
                                               {% if l.usr == request.user.username %}
-                                                {{l}}  
+                                               <strong> {{l}}   </strong> 
                                               {% else %}
-                                                {{l.take}}  
+                                               <strong> {{l.take}}  </strong> 
                                               {% endif %}
-                                            </b>
-                                            
-                                        </div>
+                                          </div>
+                                            <!-- </b> -->
+                                        <!--     
+                                        </div> -->
                                        
                           
-                                    </div>
+                                    <!-- </div> -->
                                   
                                 {% endfor %}
                                
@@ -78,8 +81,12 @@
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                               <div class="card-body">
                                 {% for p in pending %}
+                                    <div class="alert alert-light" role="alert">
                                     
-                                     <div id="betrows" class="row justify-content-sm-center mt-2 p-2">
+                                        <strong>{{p}}</strong>
+                                    </div>
+                                    
+                                     <!-- <div id="betrows" class="row justify-content-sm-center mt-2 p-2">
                                     
                                         <div class="col">
                                             <b> <i class="fa fa-fw fa-trophy"></i> {{p}}  </b>
@@ -87,7 +94,7 @@
                                         </div>
                                        
                           
-                                    </div>
+                                    </div> -->
                                   
                                 {% endfor %}
                                
@@ -111,32 +118,52 @@
                         <div class="card">
                             <div class="card-header" id="headingTwo">
                               <h2 class="mb-0">
-                               <button class="btn btn-light" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                               <button class="btn btn-light" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
                               Your Past Bets
                              </button>
                               </h2>
                             </div>
 
-                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                               <div class="card-body">
                                 {% for pa in past %}
+
                                     
-                                     <div id="betrows" class="row justify-content-sm-center mt-2 p-2">
+                                    {% if pa.user_winner %}
+                                      {% if pa.usr == request.user.username %}
+                                      <div class="alert alert-success" role="alert">
+                                      
+                                        <strong> {{pa}} +{{pa.bet_payout}}</strong>
+
+                                      </div>
+                                      {% else %}
+                                      <div class="alert alert-danger" role="alert">
+                                      
+                                        <strong> {{pa.take}} -{{pa.bet_payout}}</strong>
+
+                                      </div>
+                                      {% endif %}
+
+
+                                    {% else %}
+                                      {% if pa.usr == request.user.username %}
+                                      <div class="alert alert-danger" role="alert">
+                                      
+                                        <strong> {{pa}} -{{pa.bet_wager}}</strong>
+
+                                      </div>
+                                      {% else %}
+                                      <div class="alert alert-success" role="alert">
+                                      
+                                        <strong> {{pa.take}} +{{pa.bet_wager}}</strong>
+
+                                      </div>
+                                      {% endif %}
+
+                                    {% endif %}
+
                                     
-                                        <div class="col">
-                                             <b> <i class="fa fa-fw fa-trophy"></i> 
-                                              {% if pa.usr == request.user.username %}
-                                                {{pa}}  
-                                              {% else %}
-                                                {{pa.take}}  
-                                              {% endif %}
-                                            </b>
-                                            
-                                            
-                                        </div>
-                                       
-                          
-                                    </div>
+                                
                                   
                                 {% endfor %}
                                

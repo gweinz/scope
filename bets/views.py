@@ -41,7 +41,7 @@ def activate(request):
 def find(request):
     if 'term' in request.GET:
     
-        qs = Match.objects.filter(name__istartswith=request.GET.get('term'))
+        qs = Match.objects.filter(is_active=True).filter(name__istartswith=request.GET.get('term'))
         matches = list()
         for match in qs:
             matches.append(match.name)

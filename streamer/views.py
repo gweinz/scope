@@ -91,9 +91,10 @@ def confirm_stats(request):
         b.save()
 
         if b.is_taken:
+            total = b.bet_wager + b.bet_payout
             if b.bet_type == 1: #streamer vic
 
-                total = b.bet_wager + b.bet_payout
+                
                 if pos == 1: #streamer won
                     usr1.profile.coins += total
                     b.user_winner = True
